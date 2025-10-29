@@ -1,6 +1,8 @@
-# 🏋️ Project Roadmap
+# 🏋️ Forge Fitness - Project Roadmap
 
-## 🏗️ Phase 1 – MVP: Core Functionality
+---
+
+## 🏗️ Phase 1 - MVP: Core Functionality
 **Goal:** Users can create, save, and view workouts.
 
 ### 🗃️ Database & Exercise Library
@@ -26,8 +28,7 @@
 - [ ] Build “Create Workout” flow (add/remove exercises)  
 - [ ] Add editable fields for reps, sets, weight, rest time  
 - [ ] Implement “Save Workout” button  
-- [ ] Add ability to view saved workouts  
-- [ ] Add ability to edit or delete a workout  
+- [ ] Add ability to view, edit, and delete workouts  
 - [ ] Build “Start Workout” page (basic read-only version)  
 - [ ] Add workout timer or simple “complete” marker  
 
@@ -42,6 +43,17 @@
 - [ ] Build library of default cover images  
 - [ ] Allow user to assign a cover image to a workout/program  
 - [ ] Store chosen image reference in workout data  
+
+---
+
+## 🔐 Phase 1.5 – Authentication Setup
+**Goal:** Establish user identity early for social, tracking, and data security.
+
+- [ ] Implement authentication using Auth.js (NextAuth)  
+- [ ] Add email + Google OAuth providers  
+- [ ] Create login/logout UI and persistent session  
+- [ ] Link workouts and profiles to authenticated users  
+- [ ] Protect routes (only owners can edit/delete their workouts)
 
 ---
 
@@ -63,13 +75,13 @@
 - [ ] Add “favourite” button to workouts  
 - [ ] Show favourite count on workout cards  
 - [ ] Display list of workouts a user has favourited  
-- [ ] Add notifications for when a workout is favourited (optional)  
+- [ ] Add optional notifications when a workout is favourited  
 
-### 🗂️ Organization
+### 🗂️ Organisation
 - [ ] Create database schema for folders  
 - [ ] Build “Create Folder” modal  
 - [ ] Add “Save to Folder” option on workouts  
-- [ ] Show folders in user’s profile  
+- [ ] Show folders in user profile  
 - [ ] Enable rename/delete folder actions  
 
 ---
@@ -97,27 +109,61 @@
 
 ---
 
+## ☁️ Phase 3.5 – AWS Integration (Infra & Automation)
+**Goal:** Introduce AWS to handle media storage & scheduled jobs, gaining real cloud experience without disrupting the app.
+
+### 🪣 S3 Media Storage
+- [ ] Create S3 bucket for cover images / avatars / exercise demos  
+- [ ] Configure IAM user or role with least-privilege permissions  
+- [ ] Add Next.js API route to generate pre-signed upload URLs  
+- [ ] Store S3 file URLs in database and render in UI  
+- [ ] (Optional) Add CloudFront CDN in front of S3  
+
+### ⚙️ Lambda + EventBridge Jobs
+- [ ] Write function to recalculate streaks/PRs daily  
+- [ ] Deploy as AWS Lambda  
+- [ ] Schedule with EventBridge (CRON)  
+- [ ] Update user profile streak/PR data from Lambda  
+- [ ] Enable CloudWatch logs for Lambda runs  
+
+### 🧾 Docs & Security
+- [ ] Create `docs/aws.md` documenting bucket, IAM, Lambda, and schedules  
+- [ ] Add AWS keys/bucket names to environment variables (.env)  
+- [ ] Confirm no credentials are committed to Git  
+
+---
+
 ## 🔒 Phase 4 – Community & Moderation
 **Goal:** Handle scale and user-generated content safely.
 
 ### 🧍 User System Enhancements
-- [ ] Implement authentication (OAuth or email/password)  
 - [ ] Add verified trainer role (optional)  
 - [ ] Allow following/unfollowing other users  
 - [ ] Display follower counts  
 
 ### 🧹 Content Moderation
 - [ ] Add report button on public workouts  
-- [ ] Admin dashboard to review reported content  
+- [ ] Admin dashboard to review reports  
 - [ ] Add content flagging in database  
 - [ ] Define visibility rules for flagged content  
 
 ### 🌍 Global Support
-- [ ] Add unit preferences (lbs/kg, miles/km)  
-- [ ] Add localization (language support)  
+- [ ] Add unit preferences (lbs/kg, miles/km)
 - [ ] Store user preferences in profile  
 
-### 🖼️ Media Upload (Advanced)
-- [ ] Allow users to upload custom exercise images/videos  
-- [ ] Add validation for file size and type  
-- [ ] Add moderation for user-uploaded media  
+### 🖼️ Advanced Media Upload Enhancements
+- [ ] Allow users to upload custom exercise videos with validation  
+- [ ] Moderate user-uploaded media content  
+- [ ] Extend S3/CloudFront configuration for videos and large files  
+
+---
+
+## ✅ Version Summary
+| Phase | Focus | Outcome |
+|--------|--------|---------|
+| **1** | Core CRUD, workouts, profiles | Functional local app |
+| **1.5** | Authentication | Secure user identity |
+| **2** | Social & discovery | Share and favourite workouts |
+| **3** | Tracking & analytics | Streaks, PRs, progress graphs |
+| **3.5** | AWS integration | Cloud media + automated jobs |
+| **4** | Community & moderation | Scalable, safe social platform |

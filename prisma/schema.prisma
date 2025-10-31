@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  	provider = "prisma-client"
+  	provider = "prisma-client-js"
   	output   = "../src/generated/prisma"
 }
 
@@ -14,8 +14,42 @@ datasource db {
 	url      = env("DATABASE_URL")
 }
 
+// SINGULAR EXERCISE
 model Exercise {
 	id    String @id @default(cuid())
 	name  String
 	type  String?
+	workoutItems  WorkoutExercise[]
+}
+
+// A NAMED WORKOUT PLAN (SHELL)
+model Workout {
+	id        String            @id @default(cuid())
+	title     String
+	createdAt DateTime          @default(now())
+	items     WorkoutExercise[]
+}
+
+// WORKOUT & EXERCISE BRIDGE 
+// (Also stores how that exercise is performed in a workout)
+model WorkoutExercise {
+	id         String   @id @default(cuid())
+	workoutId  String
+	exerciseId String
+
+	// relations
+	workout    Workout  @relation(fields: [workoutId], references: [id])
+	exercise   Exercise @relation(fields: [exerciseId], references: [id])
+
+	// per-exercise settings in a workout
+	orderIndex Int      @default(0)
+	sets       Int      @default(3)
+	reps       Int      @default(8)
+	weight     Float?
+	restSeconds Int?
+	notes      String?
+
+	@@index([workoutId])
+	@@index([exerciseId])
+	@@unique([workoutId, orderIndex]) // keep ordering unique per workout
 }

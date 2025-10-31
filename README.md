@@ -22,3 +22,18 @@
 | **Hosting / CI/CD** | **Vercel** | Deployment + preview + cron | Optimized for Next.js, includes free CI. |
 | **Testing** | **Jest**, **React Testing Library**, **Playwright** | Unit / integration / E2E tests | Full test coverage stack. |
 | **Version Control / CI** | **GitHub + GitHub Actions** | Repo + automation | Free CI minutes and easy project tracking. |
+
+## Getting Started
+
+This project is a [Next.js](https://nextjs.org) app bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+First, install dependencies and run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app. You can modify `app/page.tsx`, and the page auto-updates as you edit.
+
+For more framework details, documentation lives at [Next.js Docs](https://nextjs.org/docs), and deployment guidance is available on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).

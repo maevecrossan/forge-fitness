@@ -5,51 +5,92 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  	provider = "prisma-client-js"
-  	output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-	provider = "postgresql"
-	url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// BROAD CATEGORIES
+enum ExerciseCategory {
+  WEIGHTS
+  CARDIO
+  MOBILITY
+  FUNCTIONAL
+  COOL_DOWN
+}
+
+// FOR FILTERING & ANALYTICS
+enum MuscleGroup {
+  CHEST
+  BACK
+  SHOULDERS
+  BICEPS
+  TRICEPS
+  QUADS
+  HAMSTRINGS
+  GLUTES
+  CALVES
+  CORE
+  FULL_BODY
+  UPPER_BODY
+  LOWER_BODY
+  OTHER
 }
 
 // SINGULAR EXERCISE
 model Exercise {
-	id    String @id @default(cuid())
-	name  String
-	type  String?
-	workoutItems  WorkoutExercise[]
+  id            String           @id @default(cuid())
+  name          String
+  category      ExerciseCategory
+  primaryMuscle MuscleGroup
+  equipment     String? // e.g., Barbell, Dumbbell, Machine, Bodyweight
+  modality      String? // e.g., "Running", "Cycling" (optional, free-text for now - to be refined later)
+  description   String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  workoutItems WorkoutExercise[]
+
+  @@index([name])
+  @@index([category, primaryMuscle])
 }
 
 // A NAMED WORKOUT PLAN (SHELL)
 model Workout {
-	id        String            @id @default(cuid())
-	title     String
-	createdAt DateTime          @default(now())
-	items     WorkoutExercise[]
+  id        String   @id @default(cuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items WorkoutExercise[]
 }
 
 // WORKOUT & EXERCISE BRIDGE 
 // (Also stores how that exercise is performed in a workout)
 model WorkoutExercise {
-	id         String   @id @default(cuid())
-	workoutId  String
-	exerciseId String
+  id         String @id @default(cuid())
+  workoutId  String
+  exerciseId String
 
-	// relations
-	workout    Workout  @relation(fields: [workoutId], references: [id])
-	exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  // relations
+  workout  Workout  @relation(fields: [workoutId], references: [id])
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
 
-	// per-exercise settings in a workout
-	orderIndex Int      @default(0)
-	sets       Int      @default(3)
-	reps       Int      @default(8)
-	weight     Float?
-	restSeconds Int?
-	notes      String?
+  // per-exercise settings in a workout
+  orderIndex  Int     @default(0)
+  sets        Int     @default(3)
+  reps        Int     @default(8)
+  weight      Float?
+  restSeconds Int?
+  notes       String?
 
-	@@index([workoutId])
-	@@index([exerciseId])
-	@@unique([workoutId, orderIndex]) // keep ordering unique per workout
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([workoutId, orderIndex]) // keeps ordering unique per workout
+  @@index([workoutId])
+  @@index([exerciseId])
 }

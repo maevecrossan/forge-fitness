@@ -6,8 +6,8 @@
 **Goal:** Users can create, save, and view workouts.
 
 ### 🗃️ Database & Exercise Library
-- [ ] Create database schema for exercises  
-- [ ] Define exercise attributes (name, type, muscle group, equipment, etc.)  
+- [X] Create database schema for exercises  
+- [X] Define exercise attributes (name, type, muscle group, equipment, etc.)  
 - [ ] Seed database with preset exercises (weights, cardio, mobility, etc.)  
 - [ ] Add filtering by workout type (weights, cardio, etc.)  
 - [ ] Implement backend API for fetching exercises  

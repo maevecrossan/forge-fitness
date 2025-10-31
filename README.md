@@ -1,7 +1,7 @@
 # Forge Fitness
 
 ## Tech Stack
-### Core Stack 
+### Core Stack
 
 | Layer | Tech / Service | Purpose | Why It’s a Good Fit |
 |-------|----------------|----------|--------------------|
@@ -27,7 +27,7 @@
 
 This project is a [Next.js](https://nextjs.org) app bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-First, install dependencies and run the development server:
+Install dependencies and run the development server:
 
 ```bash
 npm install

@@ -56,6 +56,7 @@ model Exercise {
 
   @@index([name])
   @@index([category, primaryMuscle])
+  @@unique([name, category, primaryMuscle])
 }
 
 // A NAMED WORKOUT PLAN (SHELL)

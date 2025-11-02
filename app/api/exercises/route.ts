@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from '@/lib/prisma'; // Prisma singleton
-import { ExerciseCategory, MuscleGroup } from "@prisma/client";
+import { Prisma, ExerciseCategory, MuscleGroup } from "@prisma/client";
 
 /**
 * GET /api/exercises
@@ -29,13 +29,21 @@ export async function GET(request: Request) {
         const category = categoryRaw in ExerciseCategory ? (categoryRaw as keyof typeof ExerciseCategory) : undefined;
         const muscle = muscleRaw in MuscleGroup ? (muscleRaw as keyof typeof MuscleGroup) : undefined;
 
-        const where = {
-            AND: [
-                q ? { name: { contains: q, mode: 'insensitive' } } : {},
-                category ? { category: ExerciseCategory[category] } : {},
-                muscle ? { primaryMuscle: MuscleGroup[muscle] } : {},
-            ],
-        };
+        const and: Prisma.ExerciseWhereInput[] = [];
+        if (q) {
+            and.push({
+                name: { contains: q, mode: "insensitive" },
+            });
+        }
+        if (category) {
+            and.push({ category });
+        }
+        if (muscle) {
+            and.push({ primaryMuscle: muscle });
+        }
+
+        const where: Prisma.ExerciseWhereInput =
+            and.length > 0 ? { AND: and } : {};
 
         const findArgs: Parameters<typeof prisma.exercise.findMany>[0] = {
             where,
@@ -53,8 +61,8 @@ export async function GET(request: Request) {
         // Determine next cursor: last items's id if a full page was returned
         const nextCursor = items.length === limit ? items[items.length - 1]?.id ?? null : null;
 
-        return NextResponse.json({ 
-            data: items, 
+        return NextResponse.json({
+            data: items,
             nextCursor,
             hasMore: Boolean(nextCursor),
         });

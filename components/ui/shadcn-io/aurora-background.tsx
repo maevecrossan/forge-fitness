@@ -39,7 +39,7 @@ export function AuroraBackground({ children, className }: Props) {
             </motion.div>
 
             {/* Foreground content */}
-            <div className="relative z-10">{children}</div>
+            <div className="w-full z-10">{children}</div>
         </div>
     );
 }

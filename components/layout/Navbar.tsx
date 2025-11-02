@@ -2,9 +2,9 @@
 
 export default function Navbar() {
 	return (
-		<nav className="bg-zinc-800 p-4">
+		<nav className="bg-white/25 p-7 backdrop-blur-md fixed top-0 w-full z-50 rounded-b-lg shadow-md">
 			<div className="w-full flex justify-between items-center">
-				<h1 className="text-white text-2xl">Forge</h1>
+				<h1 className="text-white text-2xl tracking-widest">Forge</h1>
 				<ul className="flex space-x-4">
 					<li>
 						<a href="#" className="text-white hover:underline">

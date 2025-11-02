@@ -40,13 +40,13 @@ export function AuroraBackground({ children, className }: Props) {
                 className="pointer-events-none absolute inset-0"
             >
                 {/* cyan */}
-                <div className="absolute -left-1/4 -top-1/4 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.35),transparent_60%)] blur-3xl" />
+                <div className="absolute left-[18%] top-[22%] h-[clamp(20rem,50vw,100rem)] w-[clamp(20rem,50vw,100rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.35),transparent_60%)] blur-3xl" />
                 {/* purple */}
-                <div className="absolute -right-1/4 -top-1/3 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.35),transparent_60%)] blur-3xl" />
+                <div className="absolute left-[74%] top-[20%] h-[clamp(20rem,50vw,100rem)] w-[clamp(20rem,50vw,100rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.35),transparent_60%)] blur-3xl" />
                 {/* green */}
-                <div className="absolute -left-1/8 -bottom-1/2 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.35),transparent_60%)] blur-3xl" />
+                <div className="absolute left-[32%] bottom-[15%] h-[clamp(20rem,50vw,100rem)] w-[clamp(20rem,50vw,100rem)] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.35),transparent_60%)] blur-3xl" />
                 {/* pink */}
-                <div className="absolute -right-1/12 -bottom-1/6 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.35),transparent_60%)] blur-3xl" />
+                <div className="absolute left-[68%] bottom-[18%] h-[clamp(20rem,50vw,100rem)] w-[clamp(20rem,50vw,100rem)] -translate-x-1/2 translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.35),transparent_60%)] blur-3xl" />
             </motion.div>
 
             {/* Foreground content */}

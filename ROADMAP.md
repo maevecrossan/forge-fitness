@@ -8,10 +8,10 @@
 ### 🗃️ Database & Exercise Library
 - [X] Create database schema for exercises  
 - [X] Define exercise attributes (name, type, muscle group, equipment, etc.)  
-- [ ] Seed database with preset exercises (weights, cardio, mobility, etc.)  
+- [X] Seed database with preset exercises (weights, cardio, mobility, etc.)  
 - [ ] Add filtering by workout type (weights, cardio, etc.)  
-- [ ] Implement backend API for fetching exercises  
-- [ ] Build front-end list/grid to display exercises  
+- [X] Implement backend API for fetching exercises  
+- [X] Build front-end list/grid to display exercises  
 - [ ] Add search bar for exercise names  
 - [ ] Add filter UI (by muscle group, type)
 

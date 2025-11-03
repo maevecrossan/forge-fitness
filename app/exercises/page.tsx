@@ -59,11 +59,11 @@ export default function ExercisesPage() {
     }, [sentinelRef.current, cursor, hasMore, loading]);
 
     return (
-        <div className="p-6 max-w-2xl mx-auto space-y-3">
-            <h1 className="text-2xl font-semibold mb-2">Exercises</h1>
+        <div className="mt-20 mb-20 p-6 max-w-2xl text-white mx-auto space-y-3">
+            <h2 className="text-2xl font-semibold mb-2 text-center">Exercises</h2>
 
             {items.map(e => (
-                <div key={e.id} className="border rounded p-3">
+                <div key={e.id} className="border rounded p-3 bg-white/30">
                     <div className="font-medium">{e.name}</div>
                     <div className="text-sm opacity-70">
                         {e.category} • {e.primaryMuscle}

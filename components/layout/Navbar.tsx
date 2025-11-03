@@ -21,6 +21,11 @@ export default function Navbar() {
 							Contact
 						</a>
 					</li>
+					<li>
+						<a href="/exercises" className="text-white hover:underline">
+							Exercises
+						</a>
+					</li>
 				</ul>
 			</div>
 		</nav>

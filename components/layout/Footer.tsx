@@ -2,7 +2,7 @@
 
 export default function Footer() {
 	return (
-		<footer className="bg-white/25 p-7 backdrop-blur-md fixed bottom-0 w-full z-50 rounded-t-lg shadow-md">
+		<footer className="bg-zinc-500/20 p-7 backdrop-blur-md fixed bottom-0 w-full z-50 rounded-t-lg border border-t-zinc-200 shadow-md shadow-white/50">
 			<div className="w-full flex justify-between items-center">
 				<h1 className="text-white text-2xl tracking-widest">Forge</h1>
 				<ul className="flex space-x-4">

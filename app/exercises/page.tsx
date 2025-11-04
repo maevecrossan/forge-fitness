@@ -1,5 +1,6 @@
 'use client';
 
+import SearchBar from '@/components/ui/SearchBar';
 import { useEffect, useRef, useState } from 'react';
 
 
@@ -14,9 +15,9 @@ type Exercise = {
 };
 
 type ApiResponse = {
-  data: Exercise[];
-  nextCursor: string | null;
-  hasMore: boolean;
+    data: Exercise[];
+    nextCursor: string | null;
+    hasMore: boolean;
 };
 
 export default function ExercisesPage() {
@@ -24,6 +25,7 @@ export default function ExercisesPage() {
     const [cursor, setCursor] = useState<string | null>(null);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [query, setQuery] = useState('');
     const sentinelRef = useRef<HTMLDivElement | null>(null);
 
     async function loadMore() {
@@ -59,11 +61,13 @@ export default function ExercisesPage() {
     }, [sentinelRef.current, cursor, hasMore, loading]);
 
     return (
-        <div className="mt-20 mb-20 p-6 max-w-2xl text-white mx-auto space-y-3">
+        <div className="mt-20 mb-20 p-6 max-w-6xl text-white mx-auto space-y-4 flex flex-col items-center">
+            
+            <SearchBar value={query} onChange={setQuery} />
             <h2 className="text-2xl font-semibold mb-2 text-center">Exercises</h2>
 
             {items.map(e => (
-                <div key={e.id} className="border rounded p-3 bg-white/30">
+                <div key={e.id} className="items-center border rounded p-3 bg-white/30 min-w-2xl max-w-2xl">
                     <div className="font-medium">{e.name}</div>
                     <div className="text-sm opacity-70">
                         {e.category} • {e.primaryMuscle}

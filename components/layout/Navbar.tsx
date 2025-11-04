@@ -16,7 +16,7 @@ export default function Navbar() {
 		bmBurgerBarsHover: { opacity: 0.8 },
 		bmCrossButton: { height: '24px', width: '24px' },
 		bmCross: { background: 'white' },
-		bmMenuWrap: { top: 0 },
+		bmMenuWrap: { top: '0' },
 		bmMenu: { background: 'rgba(37, 40, 45, 0.78)' },
 		bmItemList: { padding: '2rem 1rem' },
 		bmItem: { display: 'block', color: 'white', marginBottom: '1rem', textDecoration: 'none' },
@@ -39,13 +39,12 @@ export default function Navbar() {
 				</div>
 			</nav>
 
-			<div className="md:hidden">
-				<Menu
-					left
-					isOpen={open}
-					onOpen={() => setOpen(true)}
-					onClose={() => setOpen(false)}
-					styles={styles}
+				<div className="md:hidden">
+					<Menu
+						isOpen={open}
+						onOpen={() => setOpen(true)}
+						onClose={() => setOpen(false)}
+						styles={styles}
 				>
 					<a href="#" onClick={() => setOpen(false)}>Home</a>
 					<a href="#" onClick={() => setOpen(false)}>About Us</a>

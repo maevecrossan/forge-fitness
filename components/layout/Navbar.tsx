@@ -46,9 +46,6 @@ export default function Navbar() {
 					onOpen={() => setOpen(true)}
 					onClose={() => setOpen(false)}
 					styles={styles}
-				// For animations like push/elastic you’d pass these:
-				// pageWrapId="page-wrap"
-				// outerContainerId="outer-container"
 				>
 					<a href="#" onClick={() => setOpen(false)}>Home</a>
 					<a href="#" onClick={() => setOpen(false)}>About Us</a>

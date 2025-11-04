@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuroraBackground } from '@/components/ui/shadcn-io/aurora-background';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 

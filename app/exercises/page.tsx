@@ -1,8 +1,7 @@
 'use client';
 
 import SearchBar from '@/components/ui/SearchBar';
-import { useEffect, useRef, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 
 type Exercise = {
     id: string;
@@ -16,74 +15,57 @@ type Exercise = {
 
 type ApiResponse = {
     data: Exercise[];
-    nextCursor: string | null;
-    hasMore: boolean;
 };
 
 export default function ExercisesPage() {
     const [items, setItems] = useState<Exercise[]>([]);
-    const [cursor, setCursor] = useState<string | null>(null);
-    const [hasMore, setHasMore] = useState(true);
-    const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
-    const sentinelRef = useRef<HTMLDivElement | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    async function loadMore() {
-        if (loading || !hasMore) return;
-        setLoading(true);
-
-        const params = new URLSearchParams({ limit: '20' });
-        if (cursor) params.set('cursor', cursor);
-
-        const res = await fetch(`/api/exercises?${params.toString()}`);
-        const payload: ApiResponse = await res.json();
-
-        setItems(prev => [...prev, ...payload.data]);
-        setCursor(payload.nextCursor);
-        setHasMore(Boolean(payload.nextCursor));
-        setLoading(false);
-    }
-
-    // Initial load
+    // Load all exercises once
     useEffect(() => {
-        loadMore();
+        async function fetchExercises() {
+            setLoading(true);
+            const res = await fetch('/api/exercises?limit=100');
+            const payload: ApiResponse = await res.json();
+            setItems(payload.data);
+            setLoading(false);
+        }
+        fetchExercises();
     }, []);
 
-    // Infinite scroll trigger
-    useEffect(() => {
-        if (!sentinelRef.current) return;
-        const observer = new IntersectionObserver(entries => {
-            const first = entries[0];
-            if (first.isIntersecting) loadMore();
-        });
-        observer.observe(sentinelRef.current);
-        return () => observer.disconnect();
-    }, [sentinelRef.current, cursor, hasMore, loading]);
+    // Client-side filtering
+    const filtered = items.filter(e =>
+        e.name.toLowerCase().includes(query.toLowerCase())
+    );
 
     return (
         <div className="mt-20 mb-20 p-6 max-w-6xl text-white mx-auto space-y-4 flex flex-col items-center">
-            
             <SearchBar value={query} onChange={setQuery} />
             <h2 className="text-2xl font-semibold mb-2 text-center">Exercises</h2>
 
-            {items.map(e => (
-                <div key={e.id} className="items-center border rounded p-3 bg-white/30 min-w-2xl max-w-2xl">
+            {loading && <div className="opacity-70">Loading…</div>}
+
+            {!loading && filtered.length === 0 && (
+                <div className="opacity-70">No results found</div>
+            )}
+
+            {filtered.map(e => (
+                <div
+                    key={e.id}
+                    className="items-center border rounded p-3 bg-white/30 min-w-2xl max-w-2xl"
+                >
                     <div className="font-medium">{e.name}</div>
-                    <div className="text-sm opacity-70">
+                    <div className="text-sm opacity-70 capitalize">
                         {e.category} • {e.primaryMuscle}
                         {e.equipment ? ` • ${e.equipment}` : ''}
                         {e.modality ? ` • ${e.modality}` : ''}
+                        <div className="mt-1 text-xs italic">
+                            {e.description ? ` ${e.description}` : ''}
+                        </div>
                     </div>
                 </div>
             ))}
-
-            {hasMore ? (
-                <div ref={sentinelRef} className="py-8 text-center opacity-60">
-                    {loading ? 'Loading…' : 'Scroll to load more'}
-                </div>
-            ) : (
-                <div className="py-4 text-center opacity-60">No more results</div>
-            )}
         </div>
     );
 }

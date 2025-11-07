@@ -35,9 +35,20 @@ export default function ExercisesPage() {
     }, []);
 
     // Client-side filtering
-    const filtered = items.filter(e =>
-        e.name.toLowerCase().includes(query.toLowerCase())
-    );
+    const normalizedQuery = query.trim().toLowerCase();
+    const filtered = items.filter((exercise) => {
+        if (!normalizedQuery) return true;
+        return [
+            exercise.name,
+            exercise.category,
+            exercise.primaryMuscle,
+            exercise.equipment,
+            exercise.modality,
+            exercise.description,
+        ]
+            .filter(Boolean)
+            .some((field) => String(field).toLowerCase().includes(normalizedQuery));
+    });
 
     return (
         <div className="mt-20 mb-20 p-6 max-w-6xl text-white mx-auto space-y-4 flex flex-col items-center">

@@ -51,9 +51,14 @@ export default function ExercisesPage() {
     });
 
     return (
-        <div className="mt-20 mb-20 p-6 max-w-6xl text-white mx-auto space-y-4 flex flex-col items-center">
-            <SearchBar value={query} onChange={setQuery} />
-            <h2 className="text-2xl font-semibold mb-2 text-center">Exercises</h2>
+        <div className="mt-20 mb-20 px-6 text-white mx-auto max-w-6xl flex flex-col items-center justify-center gap-4">
+            <div className="sticky top-4 sm:top-6 z-20 w-full max-w-lg">
+                <div className="rounded-2xl">
+                    <SearchBar value={query} onChange={setQuery} className="w-full" />
+                </div>
+            </div>
+
+            <h2 className="text-2xl font-semibold mb-2 text-center w-full">Exercises</h2>
 
             {loading && <div className="opacity-70">Loading…</div>}
 

@@ -12,7 +12,7 @@
 - [ ] Add filtering by workout type (weights, cardio, etc.)  
 - [X] Implement backend API for fetching exercises  
 - [X] Build front-end list/grid to display exercises  
-- [ ] Add search bar for exercise names  
+- [X] Add search bar for exercise names  
 - [ ] Add filter UI (by muscle group, type)
 
 ### 🏋️ Custom Exercises

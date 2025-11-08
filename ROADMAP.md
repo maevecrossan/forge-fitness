@@ -9,14 +9,14 @@
 - [X] Create database schema for exercises  
 - [X] Define exercise attributes (name, type, muscle group, equipment, etc.)  
 - [X] Seed database with preset exercises (weights, cardio, mobility, etc.)  
-- [ ] Add filtering by workout type (weights, cardio, etc.)  
+- [X] Add filtering by workout type (weights, cardio, etc.)  
 - [X] Implement backend API for fetching exercises  
 - [X] Build front-end list/grid to display exercises  
 - [X] Add search bar for exercise names  
-- [ ] Add filter UI (by muscle group, type)
+- [X] Add filter UI (by muscle group, type)
 
 ### 🏋️ Custom Exercises
-- [ ] Build “Add Custom Exercise” form  
+- [ ] Build “Add Custom Exercise” form
 - [ ] Add fields for name, description, muscle group(s)  
 - [ ] Allow image/icon selection for custom exercise  
 - [ ] Connect form to backend (store in user’s collection)  

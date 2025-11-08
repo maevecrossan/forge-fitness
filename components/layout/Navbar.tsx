@@ -31,7 +31,7 @@ export default function Navbar() {
 
 					{/* Desktop links */}
 					<ul className="hidden md:flex items-center gap-6">
-						<li><a className="text-white hover:underline" href="#">Home</a></li>
+						<li><a className="text-white hover:underline" href="/">Home</a></li>
 						<li><a className="text-white hover:underline" href="#">About Us</a></li>
 						<li><a className="text-white hover:underline" href="#">Contact</a></li>
 						<li><a className="text-white hover:underline" href="/exercises">Exercises</a></li>
@@ -46,7 +46,7 @@ export default function Navbar() {
 						onClose={() => setOpen(false)}
 						styles={styles}
 				>
-					<a href="#" onClick={() => setOpen(false)}>Home</a>
+					<a href="/" onClick={() => setOpen(false)}>Home</a>
 					<a href="#" onClick={() => setOpen(false)}>About Us</a>
 					<a href="#" onClick={() => setOpen(false)}>Contact</a>
 					<a href="/exercises" onClick={() => setOpen(false)}>Exercises</a>

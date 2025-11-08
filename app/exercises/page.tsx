@@ -78,7 +78,7 @@ export default function ExercisesPage() {
         <div className="mt-10 mb-40 px-6 text-white mx-auto max-w-6xl flex flex-col items-center justify-center gap-4">
             <h2 className="text-4xl font-semibold text-center w-full">Exercises</h2>
             <p className="text-lg text-center mb-4">Find the perfect exercise for your workout.</p>
-            <div className="sticky top-4 sm:top-6 z-20 w-full max-w-2xl">
+            <div className="top-4 sm:top-6 z-20 w-full max-w-2xl">
                 {/* Search bar */}
 
                 <div className="rounded-2xl max-w-lg mx-auto bg-white/10 p-2 mb-5">
